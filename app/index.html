@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HomeLedger — 家計簿</title>
+<meta name="description" content="HomeLedgerは、家計の収支・予算・請求書・貯金目標をひとつの場所で管理できる家計簿サイトです。">
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="#/">
+      <span class="brand-mark" aria-hidden="true">¥</span>
+      <span class="brand-name">HomeLedger</span>
+      <span class="brand-sub">家計簿</span>
+    </a>
+    <nav class="main-nav" aria-label="メインナビゲーション">
+      <a class="nav-link" href="#/">ダッシュボード</a>
+      <a class="nav-link" href="#/transactions">取引</a>
+      <a class="nav-link" href="#/budgets">予算</a>
+      <a class="nav-link" href="#/bills">請求書</a>
+      <a class="nav-link" href="#/goals">貯金目標</a>
+      <a class="nav-link" href="#/reports">レポート</a>
+    </nav>
+  </div>
+</header>
+
+<main id="view" class="wrap" aria-live="polite"></main>
+<noscript><p class="noscript wrap">HomeLedger は JavaScript を使います。ブラウザの JavaScript を有効にして開き直してください。</p></noscript>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>HomeLedger — あなたの家計を、見える化する。データはこのブラウザの中だけに保存されます。</p>
+    <p class="sample-note">表示されている佐藤家（4人家族）のデータは架空のサンプルです。取引ページから編集・削除できます。</p>
+  </div>
+</footer>
+
+<div id="toast" class="toast" role="status" hidden></div>
+
+<script type="module" src="./main.js"></script>
+</body>
+</html>
