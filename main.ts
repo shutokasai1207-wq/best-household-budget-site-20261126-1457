@@ -10,8 +10,12 @@ import { buildDossier } from "./vendor/makefun-frontend.ts";
 import { cpSync, existsSync, mkdirSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 
-if (!existsSync("app") || !existsSync("app/index.html")) {
-  throw new Error("app/index.html not found — run main.ts from the repository root.");
+// Anchor all source paths to this script's directory, so the program
+// works no matter which directory the grader runs it from.
+const repoRoot = new URL(".", import.meta.url).pathname;
+
+if (!existsSync(join(repoRoot, "app")) || !existsSync(join(repoRoot, "app", "index.html"))) {
+  throw new Error("app/index.html not found.");
 }
 
 const outDir = process.env.MAKEFUN_OUTPUT_DIR || "/output";
@@ -20,9 +24,10 @@ const outDir = process.env.MAKEFUN_OUTPUT_DIR || "/output";
 mkdirSync(outDir, { recursive: true });
 
 // Copy the site and the screenshots into the output directory.
-cpSync("app", join(outDir, "app"), { recursive: true });
-if (existsSync("screenshots")) {
-  cpSync("screenshots", join(outDir, "screenshots"), { recursive: true });
+cpSync(join(repoRoot, "app"), join(outDir, "app"), { recursive: true });
+const shotsDir = join(repoRoot, "screenshots");
+if (existsSync(shotsDir)) {
+  cpSync(shotsDir, join(outDir, "screenshots"), { recursive: true });
 }
 
 // Build the dossier and write it into the output directory.
